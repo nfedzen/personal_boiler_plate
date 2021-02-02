@@ -1,0 +1,185 @@
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStudios (20210202183927)
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "studios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210202183927"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20210202183948)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "studio_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_419c9fa6ca"
+FOREIGN KEY ("studio_id")
+  REFERENCES "studios" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_games_on_studio_id" ON "games" ("studio_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210202183948"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-02 18:43:44.333747"], ["updated_at", "2021-02-02 18:43:44.333747"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  [1m[36mStudio Load (0.2ms)[0m  [1m[34mSELECT "studios".* FROM "studios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.9ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Riot Games"], ["created_at", "2021-02-02 18:43:48.024221"], ["updated_at", "2021-02-02 18:43:48.024221"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.4ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Epic Games"], ["created_at", "2021-02-02 18:43:48.029626"], ["updated_at", "2021-02-02 18:43:48.029626"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.4ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Blizzard Entertainment"], ["created_at", "2021-02-02 18:43:48.033575"], ["updated_at", "2021-02-02 18:43:48.033575"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "World of Warcraft"], ["studio_id", 3], ["created_at", "2021-02-02 18:43:48.056227"], ["updated_at", "2021-02-02 18:43:48.056227"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "League of Legends"], ["studio_id", 1], ["created_at", "2021-02-02 18:43:48.060310"], ["updated_at", "2021-02-02 18:43:48.060310"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.6ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Fortnite"], ["studio_id", 2], ["created_at", "2021-02-02 18:43:48.065603"], ["updated_at", "2021-02-02 18:43:48.065603"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2021-02-02 11:43:59 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/nathanfedzen/.rvm/gems/ruby-2.6.1/gems/railties-6.1.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/nathanfedzen/.rvm/gems/ruby-2.6.1/gems/railties-6.1.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.2ms | Allocations: 480)
+Completed 200 OK in 34ms (Views: 15.6ms | ActiveRecord: 0.0ms | Allocations: 4151)
+
+
+Started GET "/favicon.ico" for ::1 at 2021-02-02 11:43:59 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/studios" for ::1 at 2021-02-02 11:44:04 -0700
+Processing by StudiosController#index as HTML
+  [1m[36mStudio Load (0.2ms)[0m  [1m[34mSELECT "studios".* FROM "studios"[0m
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+Completed 200 OK in 11ms (Views: 4.8ms | ActiveRecord: 0.5ms | Allocations: 5143)
+
+
+Started GET "/games" for ::1 at 2021-02-02 11:44:08 -0700
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 10.7ms | ActiveRecord: 1.2ms | Allocations: 4284)
+
+
+Started GET "/games" for ::1 at 2021-02-02 11:44:35 -0700
+  
+SyntaxError (/Users/nathanfedzen/Flatiron/Mod3/playground/personal-boiler-plate/backend/app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+... render json: @games, include :studio
+...                              ^):
+  
+app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+Started GET "/games" for ::1 at 2021-02-02 11:44:41 -0700
+  
+SyntaxError (/Users/nathanfedzen/Flatiron/Mod3/playground/personal-boiler-plate/backend/app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+... render json: @games, include :studios
+...                              ^):
+  
+app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+app/controllers/games_controller.rb:8: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+Started GET "/games" for ::1 at 2021-02-02 11:44:53 -0700
+Processing by GamesController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/games_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:8:in `index'
+  [1m[36mStudio Load (0.2ms)[0m  [1m[34mSELECT "studios".* FROM "studios" WHERE "studios"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:8:in `index'
+  [1m[36mStudio Load (0.1ms)[0m  [1m[34mSELECT "studios".* FROM "studios" WHERE "studios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:8:in `index'
+  [1m[36mStudio Load (0.1ms)[0m  [1m[34mSELECT "studios".* FROM "studios" WHERE "studios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 24.8ms | ActiveRecord: 1.4ms | Allocations: 13107)
+
+
+Started GET "/studios" for ::1 at 2021-02-02 11:45:29 -0700
+Processing by StudiosController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mStudio Load (0.1ms)[0m  [1m[34mSELECT "studios".* FROM "studios"[0m
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 1]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 2]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 3]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+Completed 200 OK in 19ms (Views: 16.2ms | ActiveRecord: 1.8ms | Allocations: 10371)
+
+
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Destroy (0.9ms)[0m  [1m[31mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Destroy (0.4ms)[0m  [1m[31mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Destroy (0.3ms)[0m  [1m[31mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 3]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mStudio Load (0.5ms)[0m  [1m[34mSELECT "studios".* FROM "studios"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Destroy (0.4ms)[0m  [1m[31mDELETE FROM "studios" WHERE "studios"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Destroy (0.4ms)[0m  [1m[31mDELETE FROM "studios" WHERE "studios"."id" = ?[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Destroy (0.3ms)[0m  [1m[31mDELETE FROM "studios" WHERE "studios"."id" = ?[0m  [["id", 3]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.6ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Riot Games"], ["created_at", "2021-02-02 18:49:56.261588"], ["updated_at", "2021-02-02 18:49:56.261588"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.3ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Epic Games"], ["created_at", "2021-02-02 18:49:56.266628"], ["updated_at", "2021-02-02 18:49:56.266628"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mStudio Create (0.3ms)[0m  [1m[32mINSERT INTO "studios" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Blizzard Entertainment"], ["created_at", "2021-02-02 18:49:56.270164"], ["updated_at", "2021-02-02 18:49:56.270164"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "World of Warcraft"], ["studio_id", 6], ["created_at", "2021-02-02 18:49:56.280997"], ["updated_at", "2021-02-02 18:49:56.280997"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.6ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "League of Legends"], ["studio_id", 4], ["created_at", "2021-02-02 18:49:56.286285"], ["updated_at", "2021-02-02 18:49:56.286285"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.5ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Fortnite"], ["studio_id", 5], ["created_at", "2021-02-02 18:49:56.291046"], ["updated_at", "2021-02-02 18:49:56.291046"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Starcraft 2"], ["studio_id", 6], ["created_at", "2021-02-02 18:49:56.295808"], ["updated_at", "2021-02-02 18:49:56.295808"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Gears of War"], ["studio_id", 5], ["created_at", "2021-02-02 18:49:56.299202"], ["updated_at", "2021-02-02 18:49:56.299202"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (0.4ms)[0m  [1m[32mINSERT INTO "games" ("name", "studio_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Valorant"], ["studio_id", 4], ["created_at", "2021-02-02 18:49:56.302812"], ["updated_at", "2021-02-02 18:49:56.302812"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/studios" for ::1 at 2021-02-02 11:50:01 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StudiosController#index as HTML
+  [1m[36mStudio Load (0.2ms)[0m  [1m[34mSELECT "studios".* FROM "studios"[0m
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 4]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 5]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."studio_id" = ?[0m  [["studio_id", 6]]
+  ↳ app/controllers/studios_controller.rb:8:in `index'
+Completed 200 OK in 39ms (Views: 26.9ms | ActiveRecord: 2.6ms | Allocations: 15713)
+
+
